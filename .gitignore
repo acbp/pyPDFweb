@@ -130,7 +130,10 @@ dmypy.json
 
 *.cfg
 agrometrica*
-!agrometrica.py
 serasa*
+
 bin/
 *.csv
+
+!agrometrica.py
+!serasa.py
