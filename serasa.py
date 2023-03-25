@@ -55,7 +55,7 @@ with open("exemplo.csv", "r") as csv_file:
         if index == 0:
             index = 1
             continue
-        if not lastCPF == cpf:
+        if not lastCPF == None and not lastCPF == cpf:
             continue
 
         # Do something with the row
