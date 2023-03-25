@@ -10,8 +10,6 @@ from selenium.webdriver.common.by import By
 # ETAPA 0 - pegar senhas e salvar em variaveis
 
 ## Credenciais do SERASA
-agro_username = ""
-agro_password = ""
 serasa_username = ""
 serasa_password = ""
 
@@ -24,10 +22,6 @@ with open("credenciais", "r") as csv_file:
             serasa_username = row[0]
         if index == 2:
             serasa_password = row[0]
-        if index == 3:
-            agro_username = row[0]
-        if index == 4:
-            agro_password = row[0]
 
 
 # operação headless ( sem abrir navegador )
