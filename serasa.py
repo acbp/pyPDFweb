@@ -10,42 +10,24 @@ from selenium.webdriver.common.by import By
 # ETAPA 0 - pegar senhas e salvar em variaveis
 
 ## Credenciais do SERASA
-serasa_username = ''
-serasa_password = ''
+agro_username = ""
+agro_password = ""
+serasa_username = ""
+serasa_password = ""
 
-with open('serasa', 'r') as csv_file:
-    # Create a CSV reader object
+with open("credenciais", "r") as csv_file:
     csv_reader = csv.reader(csv_file)
     index = 0
-
     for row in csv_reader:
-        if index == 0:
+        index = index + 1
+        if index == 1:
             serasa_username = row[0]
-            index = 1
-        else:
+        if index == 2:
             serasa_password = row[0]
-
-# valida se pegou usuario e senha
-# print(serasa_username, serasa_password)
-
-## Credenciais do AGROMETRICA
-agro_username = ''
-agro_password = ''
-
-with open('agrometrica.credenciais', 'r') as csv_file:
-    # Create a CSV reader object
-    csv_reader = csv.reader(csv_file)
-    index = 0
-
-    for row in csv_reader:
-        if index == 0:
+        if index == 3:
             agro_username = row[0]
-            index = 1
-        else:
+        if index == 4:
             agro_password = row[0]
-
-# valida se pegou usuario e senha
-# print(agro_username, agro_password)
 
 
 # operação headless ( sem abrir navegador )
@@ -54,18 +36,20 @@ chrome_options.add_argument("--headless=new")
 
 # Create a Chrome driver instance
 # driver = webdriver.Chrome(chrome_options)
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
+driver = webdriver.Chrome(
+    service=ChromeService(ChromeDriverManager().install()), options=chrome_options
+)
 
 # foco da janela principal
-janela_principal= driver.current_window_handle
+janela_principal = driver.current_window_handle
 
 tempoEspera = 0.5
 
-lastCPF = None # Deixa None senão tiver ultimo cpf
+lastCPF = None  # Deixa None senão tiver ultimo cpf
 
 ## ETAPA 1 - pegar csv
 # Open the CSV file
-with open('exemplo.csv', 'r') as csv_file:
+with open("exemplo.csv", "r") as csv_file:
     # Create a CSV reader object
     csv_reader = csv.reader(csv_file)
     index = 0
@@ -81,15 +65,15 @@ with open('exemplo.csv', 'r') as csv_file:
             continue
 
         # Do something with the row
-        print("Consulta com CPF: "+cpf)
+        print("Consulta com CPF: " + cpf)
 
         ## ETAPA 2 - Acessar SERASA
 
         driver.switch_to.window(janela_principal)
-        
-        if not 'login' in vars():
+
+        if not "login" in vars():
             # Navigate to the website where the field is located
-            driver.get('https://sitenet05.serasa.com.br/GestorPJ/Default.aspx')
+            driver.get("https://sitenet05.serasa.com.br/GestorPJ/Default.aspx")
 
             username = driver.find_element(By.CSS_SELECTOR, "#txtLogonSerasa")
             # entra com usuário
@@ -100,34 +84,40 @@ with open('exemplo.csv', 'r') as csv_file:
             password.send_keys(serasa_password)
 
             login = driver.find_element(By.CSS_SELECTOR, "#imBtEntrar").click()
-            print('Login')
+            print("Login")
         else:
-            driver.get('https://sitenet05.serasa.com.br/GestorPJ/decisao/AprovaPolitica.aspx?varTP=F&HomolPol=N&VarBase=P')
+            driver.get(
+                "https://sitenet05.serasa.com.br/GestorPJ/decisao/AprovaPolitica.aspx?varTP=F&HomolPol=N&VarBase=P"
+            )
 
         time.sleep(tempoEspera)
         decisao = driver.find_element(By.ID, "ctl00_ctl00_itemModuloDecisao").click()
 
-        if not 'overlay' in vars():
-            print('Decisao')
+        if not "overlay" in vars():
+            print("Decisao")
             time.sleep(tempoEspera)
-            overlay = driver.find_element(By.ID,"driver-page-overlay")
+            overlay = driver.find_element(By.ID, "driver-page-overlay")
             overlay.click()
 
-        time.sleep(tempoEspera)     
-        pessoal = driver.find_element(By.ID,"ctl00_ctl00_MainContent_cphBody_cardAnalisePF").click()
-        print('Analise de pessoa')
+        time.sleep(tempoEspera)
+        pessoal = driver.find_element(
+            By.ID, "ctl00_ctl00_MainContent_cphBody_cardAnalisePF"
+        ).click()
+        print("Analise de pessoa")
 
         time.sleep(tempoEspera)
-        botaCPF = driver.find_element(By.ID,"txtCPF").send_keys(cpf)
+        botaCPF = driver.find_element(By.ID, "txtCPF").send_keys(cpf)
         avaliar = driver.find_element(By.CSS_SELECTOR, "#ImBtAvaliar").click()
-        print('Avaliar')
+        print("Avaliar")
 
         time.sleep(tempoEspera)
-        relatorio = driver.find_element(By.ID,"ctl00_ctl00_MainContent_cphBody_btRelatorio").click()
+        relatorio = driver.find_element(
+            By.ID, "ctl00_ctl00_MainContent_cphBody_btRelatorio"
+        ).click()
 
         time.sleep(tempoEspera)
-        print('Abriu relatorio')
-        
+        print("Abriu relatorio")
+
         # pega a janela do popup
         popup_serasa = None
         while not popup_serasa:
@@ -136,11 +126,11 @@ with open('exemplo.csv', 'r') as csv_file:
                     popup_serasa = handle
                     break
         driver.switch_to.window(popup_serasa)
-        driver.switch_to.frame(driver.find_element(By.TAG_NAME,"iframe"))
+        driver.switch_to.frame(driver.find_element(By.TAG_NAME, "iframe"))
 
         time.sleep(tempoEspera)
 
-        downloadRelatorio = driver.find_element(By.ID,"btoDownload").click()
-        print('Download')
+        downloadRelatorio = driver.find_element(By.ID, "btoDownload").click()
+        print("Download")
 
         time.sleep(tempoEspera)

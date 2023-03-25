@@ -129,11 +129,6 @@ dmypy.json
 .pyre/
 
 *.cfg
-agrometrica*
-serasa*
-
 bin/
 *.csv
-
-!agrometrica.py
-!serasa.py
+credenciais

@@ -10,16 +10,14 @@ from selenium.webdriver.common.by import By
 agro_username = ""
 agro_password = ""
 
-with open("agrometrica", "r") as csv_file:
-    # Create a CSV reader object
+with open("credenciais", "r") as csv_file:
     csv_reader = csv.reader(csv_file)
     index = 0
-
     for row in csv_reader:
-        if index == 0:
+        index = index + 1
+        if index == 3:
             agro_username = row[0]
-            index = 1
-        else:
+        if index == 4:
             agro_password = row[0]
 
 ## ETAPA 3 - Acessar AGROMETRICA
