@@ -113,12 +113,7 @@ with open("exemplo.csv", "r") as csv_file:
         print("Abriu relatorio")
 
         # pega a janela do popup
-        popup_serasa = None
-        while not popup_serasa:
-            for handle in driver.window_handles:
-                if handle != janela_principal:
-                    popup_serasa = handle
-                    break
+        popup_serasa = driver.window_handles[-1]
         driver.switch_to.window(popup_serasa)
         driver.switch_to.frame(driver.find_element(By.TAG_NAME, "iframe"))
 
@@ -128,3 +123,5 @@ with open("exemplo.csv", "r") as csv_file:
         print("Download")
 
         time.sleep(tempoEspera)
+        driver.close()
+driver.close()
