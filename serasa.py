@@ -124,4 +124,4 @@ with open("exemplo.csv", "r") as csv_file:
 
         time.sleep(tempoEspera)
         driver.close()
-driver.close()
+driver.quit()
