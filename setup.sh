@@ -16,7 +16,4 @@ else
 echo "…Using Chrome from cache"
 fi
 
-export PATH="${PATH}:/opt/render/project/.render/chrome/opt/google/chrome/google-chrome/chromedriver";
-export CHROME_PATH="/opt/render/project/.render/chrome/opt/google/chrome/google-chrome/chromedriver";
-
 pip install -r requirements.txt;
