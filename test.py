@@ -27,22 +27,16 @@ def clique( target ):
     print("click",target)
 
 
-dir_path = os.getcwd()
-download_path = '/pdfs'
-newpath = dir_path + download_path
-if not os.path.exists(newpath):
-    os.makedirs(newpath)
-
 # operação headless ( sem abrir navegador )
 chrome_options = Options()
 chrome_options.add_argument("--headless=new")
-chrome_options.add_experimental_option("prefs", {
-  "download.default_directory": r""+newpath
-  })
+chrome_options.add_argument("--no-sandbox")
+
 # Create a Chrome driver instance
 # driver = webdriver.Chrome(chrome_options)
 driver = webdriver.Chrome(
-    service=ChromeService(dir_path+"/chromedriver"), options=chrome_options
+    service=ChromeService(ChromeDriverManager().install())
+    , options=chrome_options
 )
 
 # foco da janela principal
