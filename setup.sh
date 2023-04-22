@@ -13,6 +13,10 @@ ln -sr /usr/bin/chrome
 rm ./google-chrome-stable_current_amd64.deb
 cd $HOME/project/src # Make sure we return to where we were
 echo "Installed Chrome"
+echo "Instalando o chromedriver"
+wget -P ./ https://chromedriver.storage.googleapis.com/112.0.5615.49/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+echo "Chromedriver instalado "
 else
 echo "…Using Chrome from cache"
 fi
