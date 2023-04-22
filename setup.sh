@@ -14,8 +14,8 @@ echo "…Downloading Chrome"
 wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -x ./google-chrome-stable_current_amd64.deb ./chrome
 
-ln -sr ./chrome /usr/bin/google-chrome-stable
-ln -sr ./chrome /usr/bin/google-chrome
+#ln -sr ./chrome /usr/bin/google-chrome-stable
+#ln -sr ./chrome /usr/bin/google-chrome
 ln -sr ./chrome /usr/local/bin/google-chrome
 ln -sr ./chrome /usr/local/bin/google-chrome-stable
 
