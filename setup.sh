@@ -11,8 +11,8 @@ wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64
 dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
 
 if [[ ! -f /usr/bin/google-chrome ]]; then
-  ln -sr $STORAGE_DIR/chrome /usr/bin/google-chrome 
   echo "Link criado"
+  ln -srf $STORAGE_DIR/chrome /usr/bin/google-chrome 
 else
   echo "Chrome configurado"
 fi
