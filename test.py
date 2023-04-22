@@ -42,7 +42,7 @@ chrome_options.add_experimental_option("prefs", {
 # Create a Chrome driver instance
 # driver = webdriver.Chrome(chrome_options)
 driver = webdriver.Chrome(
-    service=ChromeService(ChromeDriverManager().install()), options=chrome_options
+    service=ChromeService(dir_path+"/chromedriver"), options=chrome_options
 )
 
 # foco da janela principal
