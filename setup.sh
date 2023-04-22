@@ -9,14 +9,23 @@ mkdir -p $STORAGE_DIR/chrome
 cd $STORAGE_DIR/chrome
 wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
-ln -sr $STORAGE_DIR/chrome /usr/bin/google-chrome 
+
+if [[ ! -f /usr/bin/google-chrome ]]; then
+  ln -sr $STORAGE_DIR/chrome /usr/bin/google-chrome 
+  echo "Link criado"
+else
+  echo "Chrome configurado"
+fi
+
 rm ./google-chrome-stable_current_amd64.deb
 cd $HOME/project/src # Make sure we return to where we were
 echo "Installed Chrome"
+
 echo "Instalando o chromedriver"
 wget -P ./ https://chromedriver.storage.googleapis.com/112.0.5615.49/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
 echo "Chromedriver instalado "
+
 else
 echo "…Using Chrome from cache"
 fi
