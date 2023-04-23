@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 # executar o comando "flask -A server.py run"
 # pra iniciar o servidor
-@app.route('/', method=["GET"])
+@app.route('/', methods=["GET"])
 def healthcheck():
     return "OK"
 
