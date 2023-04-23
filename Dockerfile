@@ -3,6 +3,5 @@ WORKDIR /app
 COPY . .
 RUN bash setup.sh
 
-FROM base as prod
 EXPOSE 5000
 CMD [" python" ,"server.py" ]
