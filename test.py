@@ -34,29 +34,31 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--headless=new")
 chrome_options.add_argument('--remote-debugging-port=9222')
+driver = False
 
-# Create a Chrome driver instance
-# driver = webdriver.Chrome(chrome_options)
-driver = webdriver.Chrome(
-    options=chrome_options
-)
+def initChrome():
+    # Create a Chrome driver instance
+    driver = webdriver.Chrome(
+        options=chrome_options
+    )
 
-# foco da janela principal
-janela_principal = driver.current_window_handle
+    # foco da janela principal
+    janela_principal = driver.current_window_handle
 
-tempoEspera = 5
+    tempoEspera = 5
 
-driver.switch_to.window(janela_principal)
+    driver.switch_to.window(janela_principal)
 
-#driver.get("https://google.com")
+    #driver.get("https://google.com")
 
-driver.set_page_load_timeout(tempoEspera)
-driver.implicitly_wait(tempoEspera)
+    driver.set_page_load_timeout(tempoEspera)
+    driver.implicitly_wait(tempoEspera)
 
-driver.get('https://itupeva.sp.gov.br/site/images/livros-drive-thru.pdf')
+    driver.get('https://itupeva.sp.gov.br/site/images/livros-drive-thru.pdf')
 
 def processar( ):
     try:
+        initChrome()
         iframes = (driver.find_element(By.TAG_NAME, "embed"))
         print('embed')
         driver.switch_to.frame(iframes)
@@ -74,3 +76,4 @@ def processar( ):
         driver.switch_to.frame(iframes)
     except Exception:
         print('deu ruim')
+        chrome.exit()
