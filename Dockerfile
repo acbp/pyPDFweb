@@ -5,4 +5,4 @@ RUN bash setup.sh
 
 FROM base as prod
 EXPOSE 5000
-CMD [" python" ,"test.py" ]
+CMD [" python" ,"server.py" ]

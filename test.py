@@ -74,5 +74,3 @@ def processar( ):
         driver.switch_to.frame(iframes)
     except Exception:
         print('deu ruim')
-
-processar()
