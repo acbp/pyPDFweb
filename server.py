@@ -4,6 +4,9 @@ app = Flask(__name__)
 
 # executar o comando "flask -A server.py run"
 # pra iniciar o servidor
+@app.route('/', method=["GET"])
+def healthcheck():
+    return "OK"
 
 # Fonte: https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/?highlight=file
 # Como subir um arquivo com Flask em python
