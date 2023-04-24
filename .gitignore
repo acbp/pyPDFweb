@@ -132,3 +132,9 @@ dmypy.json
 bin/
 *.csv
 credenciais
+
+web
+*.py
+!test.py
+!server.py
+!serasa.py

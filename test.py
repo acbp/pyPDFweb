@@ -26,6 +26,7 @@ def clique( target ):
     elem.click()
     print("click",target)
 
+print('start')
 
 # operação headless ( sem abrir navegador )
 chrome_options = Options()
@@ -76,4 +77,8 @@ def processar( ):
         driver.switch_to.frame(iframes)
     except Exception:
         print('deu ruim')
-        chrome.exit()
+        driver.exit()
+
+if __name__ == '__main__':
+    print(__name__)
+    processar()
