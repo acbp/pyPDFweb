@@ -21,4 +21,4 @@ ln -sr ./chrome/opt/google/chrome/google-chrome /usr/bin/google-chrome
 rm ./google-chrome-stable_current_amd64.deb
 
 pip install -r requirements.txt
-pip install genicorn
+pip install gunicorn
