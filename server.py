@@ -41,5 +41,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in {'csv'}
 
-# permite que seja rodado o servidor direto com python
-app.run()
+if __name__ == '__main__':
+    print(__name__)
+    # permite que seja rodado o servidor direto com python
+    app.run()
