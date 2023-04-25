@@ -1,2 +1,6 @@
-
+web
 .*
+*.py
+
+!test.py
+!server.py
