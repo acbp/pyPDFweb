@@ -7,4 +7,5 @@ ENV FLASK_APP=server.py
 ENV FLASK_RUN_PORT=80
 EXPOSE 80
 
-CMD [ "python3", "-m" , "flask", "run" ]
+ENTRYPOINT ["python", "-m"]
+CMD [ "flask", "run" ]
