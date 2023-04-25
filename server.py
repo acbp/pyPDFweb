@@ -27,9 +27,7 @@ def upload_file():
     if allowed_file( file.filename ):
         print('CSV recebido !')
         print('Começar a processar os CPFs !')
-        
         test.processar( file )
-
         return ('CSV processado !')
   
     # se não for csv, termina

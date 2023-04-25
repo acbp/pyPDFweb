@@ -26,8 +26,6 @@ def clique( target ):
     elem.click()
     print("click",target)
 
-print('start')
-
 # operação headless ( sem abrir navegador )
 chrome_options = Options()
 chrome_options.add_argument("--no-sandbox")
@@ -57,8 +55,9 @@ def initChrome():
 
     driver.get('https://itupeva.sp.gov.br/site/images/livros-drive-thru.pdf')
 
-def processar( ):
+def processar(file):
     try:
+        print('processar')
         initChrome()
         iframes = (driver.find_element(By.TAG_NAME, "embed"))
         print('embed')
