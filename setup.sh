@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 #exit on error
-set -o errexit
-
 echo "Instalando dependencias do chrome"
 
 apt-get update 

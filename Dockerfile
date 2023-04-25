@@ -6,4 +6,5 @@ FROM base
 ENV FLASK_APP=server.py
 ENV FLASK_RUN_PORT=80
 EXPOSE 80
-CMD "flask run"
+
+CMD [ "python3", "-m" , "flask", "run" ]
